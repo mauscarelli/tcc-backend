@@ -15,7 +15,8 @@ module.exports = {
         alias: {
           '@/*': './src/',
         }
-      }]
+      }],
+      ['@babel/plugin-proposal-decorators', { 'legacy': true }]
     ],
     ignore: [
       '**/*.spec.ts'

@@ -1,4 +1,5 @@
 import express, { Application, Request, Response, NextFunction } from 'express'
+import 'reflect-metadata'
 
 // Boot express
 const app: Application = express()
