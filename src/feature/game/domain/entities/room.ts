@@ -1,4 +1,4 @@
-import { User } from '@/feature/user/domain/entities/User'
+import { User } from '@/feature/user/domain/entities/user'
 
 export enum RoomStatus{
     Empty,

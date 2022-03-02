@@ -4,5 +4,5 @@ export class User {
     lastName?: string
     age?: number
     username: string
-    password?: string
+    password: string
 }

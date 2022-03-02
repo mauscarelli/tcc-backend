@@ -1,18 +1,21 @@
-import { User } from '@/feature/user/domain/entities/User'
+import { User } from '@/feature/user/domain/entities/user'
 import { checkRequired } from '@/shared/validate'
 import { UserRepository } from '../../infra/repositories/user.repository'
 
 export class LoginUseCase {
-  async login (request: User): Promise<User> {
-    await LoginUseCase.validateRequest(request)
+    private readonly userRepository: UserRepository
+    constructor () {
+      this.userRepository = new UserRepository()
+    }
 
-    const userRepository = new UserRepository()
+    async execute (request: User): Promise<User> {
+      await LoginUseCase.validateRequest(request)
 
-    return userRepository.login(request)
-  }
+      return this.userRepository.login(request)
+    }
 
-  private static async validateRequest (request: User): Promise<void> {
-    await checkRequired(request.username, 'username')
-    await checkRequired(request.password, 'password')
-  }
+    private static async validateRequest (request: User): Promise<void> {
+      await checkRequired(request.username, 'username')
+      await checkRequired(request.password, 'password')
+    }
 }

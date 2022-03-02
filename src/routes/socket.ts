@@ -1,5 +1,5 @@
 import { Room, RoomStatus } from '@/feature/game/domain/entities/room'
-import { User } from '@/feature/user/domain/entities/User'
+import { User } from '@/feature/user/domain/entities/user'
 import { Server as HttpServer } from 'http'
 import { Server } from 'socket.io'
 
