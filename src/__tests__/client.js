@@ -17,9 +17,13 @@ const player3 = {
   username: 'claudio'
 }
 
-games.emit('create-room', player)
+games.emit('create-room', player, '1')
 
 // games.emit('join-room', '1', player2)
+
+// games.emit('start-game', '1', player, { piece: 'Qc1', turn: 'w' })
+
+// games.emit('play', '1', player, { piece: 'Qc1', turn: 'w' })
 
 games.on('joined-room', (players, msg) => {
   console.log(msg)
@@ -31,6 +35,10 @@ games.on('newPlayer', (res) => { console.log(res) })
 games.on('player-disconnected', (res) => { console.log(res) })
 
 games.on('err', (err) => { console.log(err) })
+
+games.on('played-move', (res) => { console.log('player: ' + JSON.stringify(res.player) + ' move: ' + JSON.stringify(res.move)) })
+
+games.on('game-started', (res) => { console.log(res) })
 
 games.on('success', (res) => { console.log(res) })
 

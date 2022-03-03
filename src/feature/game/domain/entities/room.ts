@@ -1,18 +1,19 @@
 import { User } from '@/feature/user/domain/entities/user'
+import { Game } from './game'
 
 export enum RoomStatus{
     Empty,
-    Occupied
+    Occupied,
+    Playing
 }
 
 export class Room {
     id: string
     status: RoomStatus
     numberOfPlayers: number
-    minPlayers?: number
-    maxPlayers?: number
     players: Map<string, User>
-    game?: string
+    game?: Game
+    table?:string
 
     constructor (roomId: string) {
       this.id = roomId
@@ -26,14 +27,21 @@ export class Room {
       this.numberOfPlayers = 0
       this.players.clear()
       this.game = undefined
-      this.minPlayers = undefined
-      this.maxPlayers = undefined
     }
 
     addPlayer (socketId: string, player: User): void {
       this.status = RoomStatus.Occupied
       this.players.set(socketId, player)
       this.numberOfPlayers++
+    }
+
+    setGame (game: Game): void {
+      this.game = game
+    }
+
+    startGame (table: string): void {
+      this.table = table
+      this.status = RoomStatus.Playing
     }
 
     removePlayer (socketId: string): User | undefined {
@@ -64,10 +72,8 @@ export class Room {
         id: this.id,
         status: this.status,
         numberOfPlayers: this.numberOfPlayers,
-        minPlayers: this.minPlayers,
-        maxPlayers: this.maxPlayers,
         players: this.players.toString(),
-        game: this.game
+        game: this.game?.toString()
       }
       return JSON.stringify(result)
     }
