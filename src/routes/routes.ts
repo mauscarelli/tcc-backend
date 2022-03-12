@@ -34,7 +34,7 @@ router.post('/user/createAccount', async (req: Request, res: Response, next: Nex
   }
 })
 
-router.get('/user/login', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/user/login', async (req: Request, res: Response, next: NextFunction) => {
   const loginUseCase = new LoginUseCase()
 
   const user = new User()
