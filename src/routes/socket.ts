@@ -15,7 +15,7 @@ export function socketInit (server: HttpServer): Server {
 
   function createRooms (): Room[] {
     const roomArr:Room[] = []
-    for (let i = 1; i <= 2; i++) {
+    for (let i = 1; i <= 50; i++) {
       roomArr.push(new Room(i.toString()))
     }
     return roomArr
